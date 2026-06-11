@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: first-dp
+spec:
+ replicas: 4
+ selector:
+  matchLabels:
+   name: kapil
+ template:
+  metadata:
+   labels:
+    name: kapil
+  spec:
+   containers:
+   - name: c01
+     image: ubuntu
+     command: ["/bin/bash", "-c", "while true; do echo hello good morning; sleep 2; done"]
+   - name: c02
+     image: nginx
+     ports:
+     - containerPort: 80

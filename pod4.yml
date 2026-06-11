@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: first-dp
+
+spec:
+ replicas: 5
+ selector:
+  matchLabels:
+   name: buchku
+ template:
+  metadata:
+   name: Pod12
+   labels:
+    name: buchku
+  spec:
+   containers:
+   - name: container1
+     image: nginx
+     env:
+     - name: MYENV
+       valueFrom:
+        configMapKeyRef:
+         name: mymap
+         key: sample.conf
